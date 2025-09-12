@@ -40,9 +40,7 @@ const NavbarHome = ({ notificationsCount = 0, onLogout }) => {
               </svg>
             </div>
             <div>
-              <span className="text-xl font-bold text-gray-900">
-                Smart Governance
-              </span>
+              <span className="text-xl font-bold text-gray-900">OneGov</span>
               <p className="text-xs text-gray-600 mt-0.5 hidden sm:block">
                 Government Services Portal
               </p>
@@ -68,7 +66,7 @@ const NavbarHome = ({ notificationsCount = 0, onLogout }) => {
                   />
                 </svg>
                 {notificationsCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
                     {notificationsCount > 9 ? "9+" : notificationsCount}
                   </span>
                 )}
@@ -90,15 +88,27 @@ const NavbarHome = ({ notificationsCount = 0, onLogout }) => {
                     <p className="text-sm font-medium text-gray-900">
                       John Doe
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">Citizen ID: 12345</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Citizen ID: 12345
+                    </p>
                   </div>
                   <div className="px-2 py-2">
                     <button
                       onClick={onLogout}
                       className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors duration-150 flex items-center"
                     >
-                      <svg className="h-4 w-4 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                      <svg
+                        className="h-4 w-4 mr-2 text-red-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                        />
                       </svg>
                       Logout
                     </button>
@@ -109,12 +119,18 @@ const NavbarHome = ({ notificationsCount = 0, onLogout }) => {
           </div>
         </div>
       </div>
-      
+
       {/* Custom animation */}
       <style jsx>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         .animate-fadeIn {
           animation: fadeIn 0.2s ease-out forwards;

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import VoiceNugget from "../components/VoiceNugget";
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -194,6 +195,7 @@ export default function LandingPage() {
           >
             Sign In
           </button>
+          <VoiceNugget />
         </div>
       </nav>
 

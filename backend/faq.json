@@ -1,0 +1,37 @@
+{
+  "customer_grievances": {
+    "keywords": ["grievance", "complaint", "report problem", "customer grievance", "file complaint", "raise issue"],
+    "snippet": "To file a customer grievance or request support, visit /support/grievances, fill the grievance form with details and upload any supporting documents. Expect an acknowledgement email and a tracking ID to check status.",
+    "action": { "type": "navigate", "label": "File a Grievance", "url": "/support/grievances" }
+  },
+  "general_support": {
+    "keywords": ["support", "help", "customer support", "contact support", "helpdesk"],
+    "snippet": "For general support, go to /support. You can submit a ticket, use live chat (when available), or find self-help guides and FAQs that cover common tasks.",
+    "action": { "type": "navigate", "label": "Support Center", "url": "/support" }
+  },
+  "transportation_lookup": {
+    "keywords": ["transport", "public transport", "bus list", "train list", "transportation", "find transport", "transport in my area"],
+    "snippet": "Find local transportation options at /transport. Search by area or stop name to see available buses, routes, and schedules for that locality.",
+    "action": { "type": "navigate", "label": "View Transportation", "url": "/transport" }
+  },
+  "community_events": {
+    "keywords": ["events", "community events", "local events", "government events", "upcoming events"],
+    "snippet": "See community and government-hosted events on /events. The page lists upcoming events, locations, dates and how to register or volunteer.",
+    "action": { "type": "navigate", "label": "View Events", "url": "/events" }
+  },
+  "utilities_index": {
+    "keywords": ["utilities", "utility links", "pay bill", "utility services", "utility links page"],
+    "snippet": "All government utility links and services are consolidated at /utilities. Use the page to jump to specific services such as water, electricity, and property-related portals.",
+    "action": { "type": "navigate", "label": "Open Utilities", "url": "/utilities" }
+  },
+  "emergency_contacts": {
+    "keywords": ["emergency", "helpline", "women helpline", "police", "ambulance", "emergency contact"],
+    "snippet": "Emergency contacts and helplines are listed on /emergency. Visit that page for the correct, up-to-date phone numbers and immediate instructions for urgent situations.",
+    "action": { "type": "navigate", "label": "Emergency Contacts", "url": "/emergency" }
+  },
+  "business_registration": {
+    "keywords": ["list my business", "add business", "register business", "business listing", "register my shop"],
+    "snippet": "To register a local business, go to /businesses/add, provide business name, address, contact info, tax id and a photo. Submissions are validated and published within 48 hours.",
+    "action": { "type": "navigate", "label": "Add Business", "url": "/businesses/add" }
+  }
+}

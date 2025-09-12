@@ -10,40 +10,79 @@ import {
   Phone,
   Star,
 } from "lucide-react";
-import Navbar from "../../components/NavbarHome";
+import Navbar from "../../components/Navbar";
 
 const businessesData = [
   {
     id: 1,
-    name: "CityCare Pediatric Clinic",
-    category: "Doctors",
-    phone: "+91 98XXXXXXX",
-    address: "12 Park Lane, City Centre",
-    image: "https://via.placeholder.com/80x80.png?text=Clinic",
-    rating: 4.6,
+    name: "AIIMS Delhi - Public Health Services",
+    category: "Hospital",
+    phone: "011-26588500",
+    address: "Ansari Nagar, New Delhi - 110029",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/f/f0/AIIMS_New_Delhi.jpg",
+    rating: 4.7,
     openNow: true,
   },
   {
     id: 2,
-    name: "AquaFix Plumbing",
-    category: "Plumbers",
-    phone: "+91 97XXXXXXX",
-    address: "44 Riverside Rd, Ward 2",
-    image: "https://via.placeholder.com/80x80.png?text=Plumber",
-    rating: 4.2,
-    openNow: false,
+    name: "India Post - Head Post Office",
+    category: "Postal Services",
+    phone: "1800 266 6868",
+    address: "Sansad Marg, New Delhi - 110001",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/3/3c/India_Post_Logo.png",
+    rating: 4.4,
+    openNow: true,
   },
   {
     id: 3,
-    name: "FreshMart Grocery",
-    category: "Groceries",
-    phone: "+91 96XXXXXXX",
-    address: "7 Market Street, Ward 5",
-    image: "https://via.placeholder.com/80x80.png?text=Grocery",
-    rating: 4.8,
+    name: "State Bank of India (SBI) - Main Branch",
+    category: "Banking",
+    phone: "1800 1234",
+    address: "Parliament Street, New Delhi - 110001",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/8/89/State_Bank_of_India_logo.svg",
+    rating: 4.6,
+    openNow: true,
+  },
+  {
+    id: 4,
+    name: "Passport Seva Kendra",
+    category: "Citizen Services",
+    phone: "1800 258 1800",
+    address: "R.K. Puram, New Delhi - 110022",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/f/f1/Passport_Seva_Logo.png",
+    rating: 4.3,
+    openNow: false,
+  },
+  {
+    id: 5,
+    name: "Delhi Jal Board - Citizen Facilitation Center",
+    category: "Utilities",
+    phone: "1916",
+    address: "Varunalaya Bhawan, Jhandewalan, New Delhi - 110005",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/1/1a/Delhi_Jal_Board_logo.png",
+    rating: 4.1,
+    openNow: true,
+  },
+  {
+    id: 6,
+    name: "IRCTC Regional Office",
+    category: "Transport",
+    phone: "139",
+    address: "State Entry Road, Connaught Place, New Delhi - 110001",
+    image: "https://upload.wikimedia.org/wikipedia/commons/7/7e/IRCTC_Logo.png",
+    rating: 4.5,
     openNow: true,
   },
 ];
+
+const handleLogout = () => {
+  console.log("User logged out!");
+};
 
 export default function Business() {
   const [search, setSearch] = useState("");
@@ -54,11 +93,7 @@ export default function Business() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white font-spline-sans">
-      {/* Navbar */}
-      <Navbar
-        notificationsCount={5}
-        onLogout={() => console.log("Logged out")}
-      />
+      <Navbar notificationsCount={5} onLogout={handleLogout} />
 
       {/* Banner */}
       <section className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white py-12 relative overflow-hidden">
@@ -92,22 +127,6 @@ export default function Business() {
                   className="absolute right-2 top-2 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg transition-all hover:scale-105 shadow-md"
                 >
                   <Search className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Popular Tags */}
-              <div className="flex flex-wrap gap-2 mt-4 justify-center">
-                <span className="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
-                  Popular:
-                </span>
-                <button className="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-full text-sm transition-colors backdrop-blur-sm">
-                  Clinics
-                </button>
-                <button className="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-full text-sm transition-colors backdrop-blur-sm">
-                  Restaurants
-                </button>
-                <button className="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-full text-sm transition-colors backdrop-blur-sm">
-                  Groceries
                 </button>
               </div>
             </div>

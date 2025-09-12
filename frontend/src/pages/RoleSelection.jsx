@@ -42,7 +42,7 @@ export default function RoleSelection() {
       <div className="max-w-4xl w-full bg-white rounded-2xl shadow-xl overflow-hidden">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 text-center">
-          <h1 className="text-4xl font-bold mb-3">Welcome to GovConnect</h1>
+          <h1 className="text-4xl font-bold mb-3">Welcome to OneGov</h1>
           <p className="text-lg opacity-90">
             Select your role to continue to the portal
           </p>

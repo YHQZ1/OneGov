@@ -48,7 +48,7 @@ const Navbar = ({ notificationsCount = 0, onLogout }) => {
           <div>
             <Link to="/home" className="hover:underline">
               <span className="text-xl font-bold text-gray-900">
-                Smart Governance
+                OneGov
               </span>
             </Link>
             <p className="text-xs text-gray-600 mt-0.5 hidden sm:block">
@@ -57,7 +57,6 @@ const Navbar = ({ notificationsCount = 0, onLogout }) => {
           </div>
         </div>
 
-        {/* Center: Navigation Menu (Desktop) */}
         {/* Center: Navigation Menu (Desktop) */}
         <nav className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-4">
           {menuItems.map((item) => (
@@ -90,7 +89,7 @@ const Navbar = ({ notificationsCount = 0, onLogout }) => {
                 />
               </svg>
               {notificationsCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium animate-pulse">
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
                   {notificationsCount > 9 ? "9+" : notificationsCount}
                 </span>
               )}

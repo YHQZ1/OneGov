@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/NavbarHome";
+import { useNavigate } from "react-router-dom";
 
-const Home = () => {
+export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [notificationsCount, setNotificationsCount] = useState(3);
   const [filteredApplications, setFilteredApplications] = useState([]);
@@ -9,8 +10,8 @@ const Home = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [showAllApplications, setShowAllApplications] = useState(false);
   const [viewMode, setViewMode] = useState("grid");
+  const [activeTopCategory, setActiveTopCategory] = useState(null);
 
-  // Mock data for recently used services
   const recentlyUsed = [
     {
       id: 1,
@@ -413,6 +414,32 @@ const Home = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleTopCategoryClick = (category) => {
+    switch (category) {
+      case "citizen":
+        navigate("/citizen-services");
+        break;
+      case "emergency":
+        navigate("/emergency-services");
+        break;
+      case "business":
+        navigate("/business-services");
+        break;
+      case "events":
+        navigate("/public-events");
+        break;
+      case "transport":
+        navigate("/transportation");
+        break;
+      case "civic":
+        navigate("/civic-engagement");
+      default:
+        break;
+    }
+  };
+
   const getAnnouncementIcon = (type) => {
     switch (type) {
       case "policy":
@@ -538,7 +565,7 @@ const Home = () => {
                 <div
                   key={category.id}
                   className={`${category.bgColor} ${category.borderColor} ${category.hoverBorderColor} border-2 rounded-xl p-4 text-center transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-lg group`}
-                  onClick={() => filterApplicationsByCategory(category.value)}
+                  onClick={() => handleTopCategoryClick(category.value)}
                 >
                   <div
                     className={`${category.iconColor} mb-3 flex justify-center group-hover:scale-110 transition-transform`}
@@ -1100,6 +1127,4 @@ const Home = () => {
       </section>
     </div>
   );
-};
-
-export default Home;
+}

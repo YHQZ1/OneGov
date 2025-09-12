@@ -5,51 +5,57 @@ import Navbar from "../../components/Navbar";
 const eventsData = [
   {
     id: 1,
-    category: "FESTIVAL",
-    title: "Community Arts Festival",
-    date: "Jul 15, 2024 · 10:00 AM",
-    location: "Central Park",
-    image: "https://via.placeholder.com/80x80.png?text=Arts",
+    category: "NATIONAL",
+    title: "Republic Day Parade 2025",
+    date: "Jan 26, 2025 · 9:00 AM",
+    location: "Kartavya Path, New Delhi",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/3/3f/Republic_Day_Parade_India.jpg",
   },
   {
     id: 2,
-    category: "WORKSHOP",
-    title: "Digital Photography Workshop",
-    date: "Jul 20, 2024 · 2:00 PM",
-    location: "Community Center",
-    image: "https://via.placeholder.com/80x80.png?text=Photo",
+    category: "INTERNATIONAL",
+    title: "International Yoga Day",
+    date: "Jun 21, 2025 · 6:00 AM",
+    location: "All Major Cities",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/5/50/International_Yoga_Day_India.jpg",
   },
   {
     id: 3,
-    category: "EDUCATIONAL",
-    title: "Financial Literacy Seminar",
-    date: "Jul 25, 2024 · 6:00 PM",
-    location: "Public Library",
-    image: "https://via.placeholder.com/80x80.png?text=Finance",
+    category: "GOVERNMENT",
+    title: "Union Budget 2025 Presentation",
+    date: "Feb 1, 2025 · 11:00 AM",
+    location: "Parliament House, New Delhi",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/1/1e/Parliament_House%2C_New_Delhi.jpg",
   },
   {
     id: 4,
-    category: "FESTIVAL",
-    title: "Summer Music Festival",
-    date: "Aug 5, 2024 · 12:00 PM",
-    location: "Waterfront Park",
-    image: "https://via.placeholder.com/80x80.png?text=Music",
+    category: "CIVIC",
+    title: "Swachh Bharat Abhiyan Drive",
+    date: "Oct 2, 2025 · 8:00 AM",
+    location: "Across India",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Swachh_Bharat_Abhiyan_logo.svg",
   },
   {
     id: 5,
-    category: "FESTIVAL",
-    title: "Community Arts Festival",
-    date: "Jul 15, 2024 · 10:00 AM",
-    location: "Central Park",
-    image: "https://via.placeholder.com/80x80.png?text=Arts",
+    category: "ELECTION",
+    title: "General Elections 2025 - Voting Day",
+    date: "Apr 15, 2025 · 7:00 AM",
+    location: "Nationwide Polling Booths",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/e/ed/EVM_India_Voting_Machine.jpg",
   },
   {
     id: 6,
-    category: "FESTIVAL",
-    title: "Community Arts Festival",
-    date: "Jul 15, 2024 · 10:00 AM",
-    location: "Central Park",
-    image: "https://via.placeholder.com/80x80.png?text=Arts",
+    category: "HEALTH",
+    title: "National Health Mission Free Check-up Camp",
+    date: "Sep 10, 2025 · 10:00 AM",
+    location: "AIIMS, New Delhi",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/f/f0/AIIMS_New_Delhi.jpg",
   },
 ];
 
@@ -57,7 +63,7 @@ const handleLogout = () => {
   console.log("User logged out!");
 };
 
-export default function Events() {
+export default function Civic() {
   const [search, setSearch] = useState("");
 
   const filteredEvents = eventsData.filter((event) =>
@@ -68,25 +74,25 @@ export default function Events() {
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white font-spline-sans">
       <Navbar notificationsCount={5} onLogout={handleLogout} />
 
+      {/* Civic Engagement Hero */}
       <section className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white py-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-pattern opacity-10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              Discover Community Events Near You
+              Participate in Civic Engagement
             </h1>
             <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
-              Stay connected and participate in local festivals, workshops, and
-              seminars. Explore events happening in your neighborhood and join
-              the fun!
+              Make your voice count. Vote in polls, share feedback, and file
+              grievances to help improve services in your neighborhood.
             </p>
 
-            {/* Enhanced Search */}
+            {/* Search */}
             <div className="relative max-w-2xl mx-auto">
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="Search events by name, date, or location..."
+                  placeholder="Search polls, feedback topics, or grievances..."
                   className="w-full px-6 py-4 pr-16 rounded-xl text-gray-900 shadow-lg border border-white/20 focus:outline-none focus:ring-4 focus:ring-white/20 focus:border-white text-lg backdrop-blur-sm bg-white/95"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
@@ -106,9 +112,9 @@ export default function Events() {
         </div>
       </section>
 
-      {/* Main Content */}
+      {/* Main Content (you can replace this with polls/feedback/grievances later) */}
       <div className="container mx-auto px-4 py-6">
-        {/* Events List */}
+        {/* Example placeholder: events list (reuse until civic engagement components are built) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredEvents.map((event) => (
             <div
@@ -219,10 +225,10 @@ export default function Events() {
               />
             </svg>
             <h3 className="text-lg font-medium text-gray-900 mb-2">
-              No events found
+              No results found
             </h3>
             <p className="text-gray-500">
-              Try adjusting your search terms or browse all events
+              Try adjusting your search terms or browse all items
             </p>
           </div>
         )}
