@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // NOTE: use your backend URL here — absolute URL avoids proxy confusion
-const API_URL = 'http://localhost:5000/api/chat';
+const API_URL = 'http://localhost:5001/api/chat';
 
 export default function VoiceNugget() {
   const [open, setOpen] = useState(false);

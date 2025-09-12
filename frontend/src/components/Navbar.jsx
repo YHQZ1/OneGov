@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import VoiceNugget from "./VoiceNugget";
 
 const Navbar = ({ notificationsCount = 0, onLogout }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -106,6 +107,7 @@ const Navbar = ({ notificationsCount = 0, onLogout }) => {
             >
               JD
             </button>
+            <VoiceNugget />
 
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-xl py-2 z-50 animate-fadeIn">
