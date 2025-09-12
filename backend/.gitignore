@@ -30,3 +30,9 @@ prisma/migrations/
 prisma/dev.db
 
 /generated/prisma
+
+# Environment variables
+.env
+
+# All env files
+.env*
