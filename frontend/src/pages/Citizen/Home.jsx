@@ -6,6 +6,9 @@ const Home = () => {
   const [notificationsCount, setNotificationsCount] = useState(3);
   const [filteredApplications, setFilteredApplications] = useState([]);
   const [filteredBusinesses, setFilteredBusinesses] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [showAllApplications, setShowAllApplications] = useState(false);
+  const [viewMode, setViewMode] = useState("grid");
 
   // Mock data for recently used services
   const recentlyUsed = [
@@ -17,6 +20,7 @@ const Home = () => {
       department: "Civil Registration",
       lastUpdate: "2 hours ago",
       progress: 60,
+      category: "citizen",
     },
     {
       id: 2,
@@ -26,6 +30,7 @@ const Home = () => {
       department: "Health Services",
       lastUpdate: "1 day ago",
       progress: 100,
+      category: "health",
     },
     {
       id: 3,
@@ -35,6 +40,7 @@ const Home = () => {
       department: "Community Affairs",
       lastUpdate: "3 hours ago",
       progress: 30,
+      category: "community",
     },
   ];
 
@@ -48,6 +54,7 @@ const Home = () => {
       department: "Civil Registration",
       lastUpdate: "2 hours ago",
       progress: 60,
+      category: "citizen",
     },
     {
       id: 2,
@@ -57,6 +64,7 @@ const Home = () => {
       department: "Health Services",
       lastUpdate: "1 day ago",
       progress: 100,
+      category: "health",
     },
     {
       id: 3,
@@ -66,6 +74,7 @@ const Home = () => {
       department: "Community Affairs",
       lastUpdate: "3 hours ago",
       progress: 30,
+      category: "community",
     },
     {
       id: 4,
@@ -75,6 +84,7 @@ const Home = () => {
       department: "Revenue Department",
       lastUpdate: "3 days ago",
       progress: 100,
+      category: "revenue",
     },
     {
       id: 5,
@@ -84,6 +94,7 @@ const Home = () => {
       department: "Business Services",
       lastUpdate: "1 week ago",
       progress: 100,
+      category: "business",
     },
     {
       id: 6,
@@ -93,6 +104,7 @@ const Home = () => {
       department: "Transportation",
       lastUpdate: "2 weeks ago",
       progress: 100,
+      category: "transport",
     },
     {
       id: 7,
@@ -102,6 +114,7 @@ const Home = () => {
       department: "Urban Planning",
       lastUpdate: "5 days ago",
       progress: 40,
+      category: "planning",
     },
     {
       id: 8,
@@ -111,6 +124,7 @@ const Home = () => {
       department: "Elections Office",
       lastUpdate: "1 month ago",
       progress: 100,
+      category: "citizen",
     },
     {
       id: 9,
@@ -120,6 +134,7 @@ const Home = () => {
       department: "Administrative Services",
       lastUpdate: "2 days ago",
       progress: 20,
+      category: "admin",
     },
   ];
 
@@ -133,6 +148,7 @@ const Home = () => {
       location: "Government Hospital Complex",
       isFavorite: true,
       distance: "0.8 mi",
+      image: "🏥",
     },
     {
       id: 2,
@@ -142,6 +158,7 @@ const Home = () => {
       location: "Main Administrative Block",
       isFavorite: false,
       distance: "0.3 mi",
+      image: "🍽️",
     },
     {
       id: 3,
@@ -151,6 +168,7 @@ const Home = () => {
       location: "District Center",
       isFavorite: true,
       distance: "1.2 mi",
+      image: "🏛️",
     },
     {
       id: 4,
@@ -160,6 +178,7 @@ const Home = () => {
       location: "Sector 15",
       isFavorite: false,
       distance: "2.1 mi",
+      image: "📚",
     },
   ];
 
@@ -212,6 +231,7 @@ const Home = () => {
       borderColor: "border-blue-200",
       hoverBorderColor: "hover:border-blue-400",
       count: 24,
+      value: "citizen",
       icon: (
         <svg
           className="h-8 w-8"
@@ -236,6 +256,7 @@ const Home = () => {
       borderColor: "border-red-200",
       hoverBorderColor: "hover:border-red-400",
       count: 8,
+      value: "emergency",
       icon: (
         <svg
           className="h-8 w-8"
@@ -260,6 +281,7 @@ const Home = () => {
       borderColor: "border-green-200",
       hoverBorderColor: "hover:border-green-400",
       count: 18,
+      value: "business",
       icon: (
         <svg
           className="h-8 w-8"
@@ -284,6 +306,7 @@ const Home = () => {
       borderColor: "border-purple-200",
       hoverBorderColor: "hover:border-purple-400",
       count: 12,
+      value: "events",
       icon: (
         <svg
           className="h-8 w-8"
@@ -308,6 +331,7 @@ const Home = () => {
       borderColor: "border-indigo-200",
       hoverBorderColor: "hover:border-indigo-400",
       count: 6,
+      value: "transport",
       icon: (
         <svg
           className="h-8 w-8"
@@ -332,6 +356,7 @@ const Home = () => {
       borderColor: "border-orange-200",
       hoverBorderColor: "hover:border-orange-400",
       count: 9,
+      value: "civic",
       icon: (
         <svg
           className="h-8 w-8"
@@ -463,6 +488,24 @@ const Home = () => {
     }
   };
 
+  const filterApplicationsByCategory = (category) => {
+    setActiveCategory(category);
+    if (category === "all") {
+      setFilteredApplications(recentlyUsed);
+    } else {
+      const filtered = recentlyUsed.filter((app) => app.category === category);
+      setFilteredApplications(filtered);
+    }
+  };
+
+  const toggleApplicationsView = () => {
+    setShowAllApplications(!showAllApplications);
+  };
+
+  const toggleViewMode = () => {
+    setViewMode(viewMode === "grid" ? "list" : "grid");
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar notificationsCount={5} onLogout={handleLogout} />
@@ -475,56 +518,10 @@ const Home = () => {
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
               Welcome to Your Government Services Portal
             </h1>
-            <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-blue-100 text-lg mb-0 max-w-2xl mx-auto">
               Access all government services, track your applications, and stay
               informed about community updates in one secure platform.
             </p>
-
-            {/* Enhanced Search */}
-            <div className="relative max-w-2xl mx-auto">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search services, applications, or information..."
-                  className="w-full px-6 py-4 pr-16 rounded-xl text-gray-900 shadow-lg border border-white/20 focus:outline-none focus:ring-4 focus:ring-white/20 focus:border-white text-lg backdrop-blur-sm bg-white/95"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyPress={(e) => e.key === "Enter" && handleSearch()}
-                />
-                <button
-                  onClick={handleSearch}
-                  className="absolute right-2 top-2 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg transition-all hover:scale-105 shadow-md"
-                >
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </button>
-              </div>
-              <div className="flex flex-wrap gap-2 mt-4 justify-center">
-                <span className="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
-                  Popular:
-                </span>
-                <button className="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-full text-sm transition-colors backdrop-blur-sm">
-                  Birth Certificate
-                </button>
-                <button className="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-full text-sm transition-colors backdrop-blur-sm">
-                  Tax Payment
-                </button>
-                <button className="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-full text-sm transition-colors backdrop-blur-sm">
-                  License Renewal
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -536,25 +533,26 @@ const Home = () => {
             <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
               Government Service Categories
             </h2>
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
               {serviceCategories.map((category) => (
                 <div
                   key={category.id}
-                  className={`${category.bgColor} ${category.borderColor} ${category.hoverBorderColor} border-2 rounded-xl p-6 text-center transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-lg group`}
+                  className={`${category.bgColor} ${category.borderColor} ${category.hoverBorderColor} border-2 rounded-xl p-4 text-center transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-lg group`}
+                  onClick={() => filterApplicationsByCategory(category.value)}
                 >
                   <div
-                    className={`${category.iconColor} mb-4 flex justify-center group-hover:scale-110 transition-transform`}
+                    className={`${category.iconColor} mb-3 flex justify-center group-hover:scale-110 transition-transform`}
                   >
                     {category.icon}
                   </div>
-                  <h3 className="text-gray-900 font-bold text-lg mb-2">
+                  <h3 className="text-gray-900 font-bold text-sm mb-1">
                     {category.label}
                   </h3>
                   <div className="flex items-center justify-center">
                     <span
-                      className={`${category.iconColor} bg-white px-3 py-1 rounded-full text-sm font-semibold border-2 ${category.borderColor}`}
+                      className={`${category.iconColor} bg-white px-2 py-1 rounded-full text-xs font-semibold border-2 ${category.borderColor}`}
                     >
-                      {category.count} services
+                      {category.count}
                     </span>
                   </div>
                 </div>
@@ -571,82 +569,225 @@ const Home = () => {
             <h2 className="text-2xl font-bold text-gray-900">
               Recent Applications & Services
             </h2>
-            <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center space-x-1 transition-colors">
-              <span>View All</span>
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={toggleViewMode}
+                className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
+                {viewMode === "grid" ? (
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                    />
+                  </svg>
+                )}
+              </button>
+              <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center space-x-1 transition-colors">
+                <span>View All</span>
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {filteredApplications.map((item) => (
-              <div
-                key={item.id}
-                className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 transition-all hover:shadow-md bg-gray-50/50 relative overflow-hidden"
+
+          {/* Category Filter */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            <button
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                activeCategory === "all"
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+              onClick={() => filterApplicationsByCategory("all")}
+            >
+              All Applications
+            </button>
+            {serviceCategories.map((category) => (
+              <button
+                key={category.id}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  activeCategory === category.value
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+                onClick={() => filterApplicationsByCategory(category.value)}
               >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gray-200">
-                  <div
-                    className={`h-full ${item.statusColor}`}
-                    style={{ width: `${item.progress}%` }}
-                  ></div>
-                </div>
-                <div className="flex items-start justify-between mb-4 pt-2">
-                  <div className="flex items-center">
-                    <div
-                      className={`w-3 h-3 ${item.statusColor} rounded-full mr-2`}
-                    ></div>
-                    <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded-full border">
-                      {item.lastUpdate}
-                    </span>
-                  </div>
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2 leading-tight">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-600 mb-3">{item.department}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-700">
-                    {item.status}
-                  </span>
-                  <button className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors flex items-center">
-                    <span>View Details</span>
-                    <svg
-                      className="h-4 w-4 ml-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
+                {category.label}
+              </button>
             ))}
           </div>
+
+          {viewMode === "grid" ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredApplications.map((item) => (
+                <div
+                  key={item.id}
+                  className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 transition-all hover:shadow-md bg-gray-50/50 relative overflow-hidden group"
+                >
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gray-200">
+                    <div
+                      className={`h-full ${item.statusColor}`}
+                      style={{ width: `${item.progress}%` }}
+                    ></div>
+                  </div>
+                  <div className="flex items-start justify-between mb-4 pt-2">
+                    <div className="flex items-center">
+                      <div
+                        className={`w-3 h-3 ${item.statusColor} rounded-full mr-2`}
+                      ></div>
+                      <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded-full border">
+                        {item.lastUpdate}
+                      </span>
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-gray-900 mb-2 leading-tight group-hover:text-blue-600 transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3">
+                    {item.department}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-700">
+                      {item.status}
+                    </span>
+                    <button className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors flex items-center">
+                      <span>View Details</span>
+                      <svg
+                        className="h-4 w-4 ml-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="overflow-hidden rounded-lg border border-gray-200">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Service
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Department
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Status
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Last Update
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {filteredApplications.map((item) => (
+                    <tr
+                      key={item.id}
+                      className="hover:bg-gray-50 transition-colors"
+                    >
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="font-medium text-gray-900">
+                          {item.title}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {item.department}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span
+                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${item.statusColor} text-white`}
+                        >
+                          {item.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {item.lastUpdate}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button className="text-blue-600 hover:text-blue-900">
+                          View Details
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </section>
 
+        {/* All Applications Section */}
         <section className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-gray-900">
-              View All Applications
+              All Applications
             </h2>
-            <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center space-x-1 transition-colors">
-              <span>View All</span>
+            <button
+              onClick={toggleApplicationsView}
+              className="text-blue-600 hover:text-blue-800 font-medium flex items-center space-x-1 transition-colors"
+            >
+              <span>{showAllApplications ? "Show Less" : "View All"}</span>
               <svg
                 className="h-4 w-4"
                 fill="none"
@@ -662,11 +803,15 @@ const Home = () => {
               </svg>
             </button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {recentlyUsed.map((item) => (
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {(showAllApplications
+              ? allVisitedServices
+              : allVisitedServices.slice(0, 3)
+            ).map((item) => (
               <div
                 key={item.id}
-                className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 transition-all hover:shadow-md bg-gray-50/50 relative overflow-hidden"
+                className="border border-gray-200 rounded-xl p-6 hover:border-blue-300 transition-all hover:shadow-md bg-gray-50/50 relative overflow-hidden group"
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gray-200">
                   <div
@@ -684,7 +829,7 @@ const Home = () => {
                     </span>
                   </div>
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2 leading-tight">
+                <h3 className="font-bold text-gray-900 mb-2 leading-tight group-hover:text-blue-600 transition-colors">
                   {item.title}
                 </h3>
                 <p className="text-sm text-gray-600 mb-3">{item.department}</p>
@@ -741,124 +886,61 @@ const Home = () => {
             </div>
 
             <div className="space-y-4">
-              {/* Community Polls */}
-              <div className="border border-gray-200 rounded-xl p-5 hover:border-blue-300 transition-all hover:shadow-md bg-gray-50/30">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="px-2 py-1 rounded-full text-xs font-semibold border border-blue-300 text-blue-600">
-                      POLL
+              {announcements.map((announcement) => (
+                <div
+                  key={announcement.id}
+                  className="border border-gray-200 rounded-xl p-5 hover:border-blue-300 transition-all hover:shadow-md bg-gray-50/30"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div
+                        className={`flex items-center justify-center w-8 h-8 rounded-full ${getPriorityColor(
+                          announcement.priority
+                        )}`}
+                      >
+                        {getAnnouncementIcon(announcement.type)}
+                      </div>
+                      <div
+                        className={`px-2 py-1 rounded-full text-xs font-semibold ${getPriorityColor(
+                          announcement.priority
+                        )}`}
+                      >
+                        {announcement.type.toUpperCase()}
+                      </div>
                     </div>
+                    <span className="text-xs text-gray-500">
+                      {announcement.date}
+                    </span>
                   </div>
-                  <span className="text-xs text-gray-500">Today</span>
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2 text-md">
-                  Community Polls
-                </h3>
-                <p className="text-gray-600 mb-4 leading-relaxed text-sm">
-                  Participate in polls about local issues and upcoming projects.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-500 font-medium">
-                    Engage with your neighbors
-                  </span>
-                  <button className="text-blue-600 hover:text-blue-800 text-xs font-medium transition-colors flex items-center space-x-1">
-                    <span>View</span>
-                    <svg
-                      className="h-3 w-3"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              {/* Local Announcements */}
-              <div className="border border-gray-200 rounded-xl p-5 hover:border-blue-300 transition-all hover:shadow-md bg-gray-50/30">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="px-2 py-1 rounded-full text-xs font-semibold border border-yellow-300 text-yellow-600">
-                      UPDATE
-                    </div>
+                  <h3 className="font-bold text-gray-900 mb-2 text-md">
+                    {announcement.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed text-sm">
+                    {announcement.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-gray-500 font-medium">
+                      {announcement.publishedBy}
+                    </span>
+                    <button className="text-blue-600 hover:text-blue-800 text-xs font-medium transition-colors flex items-center space-x-1">
+                      <span>Read More</span>
+                      <svg
+                        className="h-3 w-3"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </button>
                   </div>
-                  <span className="text-xs text-gray-500">Yesterday</span>
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2 text-md">
-                  Local Announcements
-                </h3>
-                <p className="text-gray-600 mb-4 leading-relaxed text-sm">
-                  Stay updated with events, initiatives, and community news in
-                  your area.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-500 font-medium">
-                    Community Office
-                  </span>
-                  <button className="text-blue-600 hover:text-blue-800 text-xs font-medium transition-colors flex items-center space-x-1">
-                    <span>Read More</span>
-                    <svg
-                      className="h-3 w-3"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              {/* Citizen Feedback */}
-              <div className="border border-gray-200 rounded-xl p-5 hover:border-blue-300 transition-all hover:shadow-md bg-gray-50/30">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="px-2 py-1 rounded-full text-xs font-semibold border border-green-300 text-green-600">
-                      FEEDBACK
-                    </div>
-                  </div>
-                  <span className="text-xs text-gray-500">2 days ago</span>
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2 text-md">
-                  Citizen Feedback
-                </h3>
-                <p className="text-gray-600 mb-4 leading-relaxed text-sm">
-                  Share your ideas, report issues, or provide feedback to
-                  improve community services.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-500 font-medium">
-                    Your voice matters
-                  </span>
-                  <button className="text-blue-600 hover:text-blue-800 text-xs font-medium transition-colors flex items-center space-x-1">
-                    <span>Submit</span>
-                    <svg
-                      className="h-3 w-3"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
+              ))}
             </div>
           </section>
 
@@ -889,8 +971,11 @@ const Home = () => {
               {filteredBusinesses.map((business) => (
                 <div
                   key={business.id}
-                  className="border border-gray-200 rounded-xl p-5 hover:border-blue-300 transition-all hover:shadow-md bg-gray-50/30 group flex"
+                  className="border border-gray-200 rounded-xl p-5 hover:border-blue-300 transition-all hover:shadow-md bg-gray-50/30 group flex items-center"
                 >
+                  <div className="flex-shrink-0 mr-4 text-3xl">
+                    {business.image}
+                  </div>
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-2">
                       <h3 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors text-md">
@@ -951,7 +1036,7 @@ const Home = () => {
       </div>
 
       {/* Quick Actions Bar */}
-      <section className="bg-blue-600 py-8 mt-8">
+      <section className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 py-12 mt-8">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-white mb-2">
@@ -961,10 +1046,10 @@ const Home = () => {
               Access emergency services and critical information
             </p>
           </div>
-          <div className="flex flex-wrap justify-center gap-4">
-            <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg flex items-center space-x-2">
+          <div className="flex flex-wrap justify-center gap-6">
+            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-semibold transition-colors shadow-lg flex items-center space-x-3 transform hover:scale-105 transition-transform">
               <svg
-                className="h-5 w-5"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -978,9 +1063,9 @@ const Home = () => {
               </svg>
               <span>Emergency: 911</span>
             </button>
-            <button className="bg-white hover:bg-gray-100 text-blue-600 px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg flex items-center space-x-2">
+            <button className="bg-white hover:bg-gray-100 text-blue-600 px-8 py-4 rounded-xl font-semibold transition-colors shadow-lg flex items-center space-x-3 transform hover:scale-105 transition-transform">
               <svg
-                className="h-5 w-5"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -994,9 +1079,9 @@ const Home = () => {
               </svg>
               <span>Help Center</span>
             </button>
-            <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg flex items-center space-x-2">
+            <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold transition-colors shadow-lg flex items-center space-x-3 transform hover:scale-105 transition-transform">
               <svg
-                className="h-5 w-5"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

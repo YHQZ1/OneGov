@@ -1,0 +1,32 @@
+# Node modules
+node_modules/
+# Logs
+logs
+*.log
+npm-debug.log*
+# Dependency directories
+jspm_packages/
+# Optional npm cache directory
+.npm
+# dotenv environment variables file
+.env
+.env.local
+prisma/.env
+prisma/.env.local
+generated/
+*.env.*
+*.env
+# OS
+.DS_Store
+Thumbs.db
+# Build output
+/dist
+/build
+# Vite
+.vite
+
+# Prisma generated files
+prisma/migrations/
+prisma/dev.db
+
+/generated/prisma
