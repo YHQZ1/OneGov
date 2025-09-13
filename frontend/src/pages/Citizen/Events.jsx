@@ -9,7 +9,16 @@ const eventsData = [
     title: "Community Arts Festival",
     date: "Jul 15, 2024 · 10:00 AM",
     location: "Central Park",
-    image: "https://via.placeholder.com/80x80.png?text=Arts",
+    logo: (
+      <div className="w-16 h-16 rounded-lg bg-purple-100 flex items-center justify-center p-2 flex-shrink-0">
+        <svg viewBox="0 0 100 100" className="w-12 h-12">
+          <circle cx="50" cy="50" r="45" fill="#7e22ce" />
+          <path d="M30 40 L70 40 L65 60 L35 60 Z" fill="white" />
+          <circle cx="40" cy="45" r="5" fill="#7e22ce" />
+          <circle cx="60" cy="45" r="5" fill="#7e22ce" />
+        </svg>
+      </div>
+    ),
   },
   {
     id: 2,
@@ -17,7 +26,16 @@ const eventsData = [
     title: "Digital Photography Workshop",
     date: "Jul 20, 2024 · 2:00 PM",
     location: "Community Center",
-    image: "https://via.placeholder.com/80x80.png?text=Photo",
+    logo: (
+      <div className="w-16 h-16 rounded-lg bg-blue-100 flex items-center justify-center p-2 flex-shrink-0">
+        <svg viewBox="0 0 100 100" className="w-12 h-12">
+          <rect x="25" y="25" width="50" height="40" rx="5" fill="#1d4ed8" />
+          <circle cx="50" cy="35" r="8" fill="white" />
+          <circle cx="50" cy="35" r="4" fill="#1d4ed8" />
+          <rect x="35" y="50" width="30" height="10" rx="2" fill="white" />
+        </svg>
+      </div>
+    ),
   },
   {
     id: 3,
@@ -25,7 +43,25 @@ const eventsData = [
     title: "Financial Literacy Seminar",
     date: "Jul 25, 2024 · 6:00 PM",
     location: "Public Library",
-    image: "https://via.placeholder.com/80x80.png?text=Finance",
+    logo: (
+      <div className="w-16 h-16 rounded-lg bg-green-100 flex items-center justify-center p-2 flex-shrink-0">
+        <svg viewBox="0 0 100 100" className="w-12 h-12">
+          <path d="M30 30 L70 30 L70 70 L30 70 Z" fill="#16a34a" />
+          <path d="M40 40 L60 40 L60 60 L40 60 Z" fill="white" />
+          <text
+            x="50"
+            y="50"
+            textAnchor="middle"
+            fill="#16a34a"
+            fontSize="20"
+            fontWeight="bold"
+            dy="5"
+          >
+            $
+          </text>
+        </svg>
+      </div>
+    ),
   },
   {
     id: 4,
@@ -33,23 +69,48 @@ const eventsData = [
     title: "Summer Music Festival",
     date: "Aug 5, 2024 · 12:00 PM",
     location: "Waterfront Park",
-    image: "https://via.placeholder.com/80x80.png?text=Music",
+    logo: (
+      <div className="w-16 h-16 rounded-lg bg-yellow-100 flex items-center justify-center p-2 flex-shrink-0">
+        <svg viewBox="0 0 100 100" className="w-12 h-12">
+          <circle cx="50" cy="50" r="40" fill="#ca8a04" />
+          <path d="M40 30 L60 30 L65 50 L60 70 L40 70 L35 50 Z" fill="white" />
+          <path d="M45 40 L55 40 L55 60 L45 60 Z" fill="#ca8a04" />
+        </svg>
+      </div>
+    ),
   },
   {
     id: 5,
     category: "FESTIVAL",
-    title: "Community Arts Festival",
-    date: "Jul 15, 2024 · 10:00 AM",
-    location: "Central Park",
-    image: "https://via.placeholder.com/80x80.png?text=Arts",
+    title: "Food & Culture Fair",
+    date: "Aug 12, 2024 · 11:00 AM",
+    location: "Town Square",
+    logo: (
+      <div className="w-16 h-16 rounded-lg bg-red-100 flex items-center justify-center p-2 flex-shrink-0">
+        <svg viewBox="0 0 100 100" className="w-12 h-12">
+          <circle cx="50" cy="50" r="40" fill="#dc2626" />
+          <path d="M35 40 L65 40 L60 60 L40 60 Z" fill="white" />
+          <circle cx="45" cy="45" r="3" fill="#dc2626" />
+          <circle cx="55" cy="45" r="3" fill="#dc2626" />
+        </svg>
+      </div>
+    ),
   },
   {
     id: 6,
-    category: "FESTIVAL",
-    title: "Community Arts Festival",
-    date: "Jul 15, 2024 · 10:00 AM",
-    location: "Central Park",
-    image: "https://via.placeholder.com/80x80.png?text=Arts",
+    category: "WORKSHOP",
+    title: "Gardening Workshop",
+    date: "Aug 18, 2024 · 9:00 AM",
+    location: "Botanical Gardens",
+    logo: (
+      <div className="w-16 h-16 rounded-lg bg-emerald-100 flex items-center justify-center p-2 flex-shrink-0">
+        <svg viewBox="0 0 100 100" className="w-12 h-12">
+          <path d="M40 60 L50 30 L60 60 Z" fill="#059669" />
+          <circle cx="50" cy="65" r="10" fill="#059669" />
+          <path d="M35 50 L65 50" stroke="#059669" strokeWidth="3" />
+        </svg>
+      </div>
+    ),
   },
 ];
 
@@ -126,11 +187,7 @@ export default function Events() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
-                  />
+                  {event.logo}
                   <div className="flex-1">
                     <h3 className="font-bold text-gray-900 text-lg mb-1">
                       {event.title}

@@ -10,8 +10,11 @@ import Emergency from "./pages/Citizen/Emergency";
 import Civic from "./pages/Citizen/Civic";
 import CitizenServices from "./pages/Citizen/CitizenServices";
 import Transportation from "./pages/Citizen/Transportation";
+import Grievances from "./pages/Citizen/Grievances";
 
 import BusinessPortal from "./pages/Business/BusinessPortal";
+
+import AdminHome from "./pages/Admin/AdminHome";
 
 function App() {
   return (
@@ -26,8 +29,10 @@ function App() {
         <Route path="/emergency-services" element={<Emergency />} />
         <Route path="/civic-engagement" element={<Civic />} />
         <Route path="/citizen-services" element={<CitizenServices />} />
+        <Route path="/grievances" element={<Grievances />} /> 
         <Route path="/transportation" element={<Transportation />} />
         <Route path="/business-portal" element={<BusinessPortal />} />
+        <Route path="/admin" element={<AdminHome />} />
       </Routes>
     </Router>
   );

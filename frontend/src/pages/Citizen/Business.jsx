@@ -19,8 +19,21 @@ const businessesData = [
     category: "Hospital",
     phone: "011-26588500",
     address: "Ansari Nagar, New Delhi - 110029",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/f/f0/AIIMS_New_Delhi.jpg",
+    logo: (
+      <div className="w-20 h-20 rounded-lg bg-blue-100 flex items-center justify-center p-2">
+        <svg viewBox="0 0 100 100" className="w-16 h-16">
+          <circle cx="50" cy="50" r="45" fill="#1e40af" />
+          <path
+            d="M40 30 L60 30 L70 50 L60 70 L40 70 L30 50 Z"
+            fill="white"
+          />
+          <path
+            d="M45 40 L55 40 L55 60 L45 60 Z"
+            fill="#1e40af"
+          />
+        </svg>
+      </div>
+    ),
     rating: 4.7,
     openNow: true,
   },
@@ -30,8 +43,14 @@ const businessesData = [
     category: "Postal Services",
     phone: "1800 266 6868",
     address: "Sansad Marg, New Delhi - 110001",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/3/3c/India_Post_Logo.png",
+    logo: (
+      <div className="w-20 h-20 rounded-lg bg-red-100 flex items-center justify-center p-2">
+        <svg viewBox="0 0 100 100" className="w-16 h-16">
+          <rect x="20" y="25" width="60" height="50" rx="5" fill="#dc2626" />
+          <text x="50" y="55" textAnchor="middle" fill="white" fontSize="20" fontWeight="bold">IP</text>
+        </svg>
+      </div>
+    ),
     rating: 4.4,
     openNow: true,
   },
@@ -41,8 +60,15 @@ const businessesData = [
     category: "Banking",
     phone: "1800 1234",
     address: "Parliament Street, New Delhi - 110001",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/8/89/State_Bank_of_India_logo.svg",
+    logo: (
+      <div className="w-20 h-20 rounded-lg bg-blue-100 flex items-center justify-center p-2">
+        <svg viewBox="0 0 100 100" className="w-16 h-16">
+          <circle cx="50" cy="50" r="40" fill="#1e3a8a" />
+          <circle cx="50" cy="50" r="30" fill="white" />
+          <text x="50" y="55" textAnchor="middle" fill="#1e3a8a" fontSize="20" fontWeight="bold">SBI</text>
+        </svg>
+      </div>
+    ),
     rating: 4.6,
     openNow: true,
   },
@@ -52,8 +78,18 @@ const businessesData = [
     category: "Citizen Services",
     phone: "1800 258 1800",
     address: "R.K. Puram, New Delhi - 110022",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/f/f1/Passport_Seva_Logo.png",
+    logo: (
+      <div className="w-20 h-20 rounded-lg bg-blue-100 flex items-center justify-center p-2">
+        <svg viewBox="0 0 100 100" className="w-16 h-16">
+          <rect x="25" y="25" width="50" height="50" rx="5" fill="#1e40af" />
+          <path
+            d="M35 35 L65 35 L65 45 L35 45 Z"
+            fill="white"
+          />
+          <circle cx="50" cy="60" r="8" fill="white" />
+        </svg>
+      </div>
+    ),
     rating: 4.3,
     openNow: false,
   },
@@ -63,8 +99,20 @@ const businessesData = [
     category: "Utilities",
     phone: "1916",
     address: "Varunalaya Bhawan, Jhandewalan, New Delhi - 110005",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/1/1a/Delhi_Jal_Board_logo.png",
+    logo: (
+      <div className="w-20 h-20 rounded-lg bg-blue-100 flex items-center justify-center p-2">
+        <svg viewBox="0 0 100 100" className="w-16 h-16">
+          <path
+            d="M30 30 Q50 20 70 30 Q80 50 70 70 Q50 80 30 70 Q20 50 30 30"
+            fill="#0284c7"
+          />
+          <path
+            d="M40 40 L60 40 L55 60 L45 60 Z"
+            fill="white"
+          />
+        </svg>
+      </div>
+    ),
     rating: 4.1,
     openNow: true,
   },
@@ -74,7 +122,14 @@ const businessesData = [
     category: "Transport",
     phone: "139",
     address: "State Entry Road, Connaught Place, New Delhi - 110001",
-    image: "https://upload.wikimedia.org/wikipedia/commons/7/7e/IRCTC_Logo.png",
+    logo: (
+      <div className="w-20 h-20 rounded-lg bg-orange-100 flex items-center justify-center p-2">
+        <svg viewBox="0 0 100 100" className="w-16 h-16">
+          <rect x="20" y="30" width="60" height="40" rx="5" fill="#ea580c" />
+          <text x="50" y="55" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">IRCTC</text>
+        </svg>
+      </div>
+    ),
     rating: 4.5,
     openNow: true,
   },
@@ -150,12 +205,8 @@ export default function Business() {
               key={biz.id}
               className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 hover:border-blue-200"
             >
-              <div className="p-5 flex space-x-4">
-                <img
-                  src={biz.image}
-                  alt={biz.name}
-                  className="w-20 h-20 rounded-lg object-cover flex-shrink-0"
-                />
+              <div className="p-5 flex items-center space-x-4">
+                {biz.logo}
                 <div className="flex-1">
                   <span className="px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">
                     {biz.category}

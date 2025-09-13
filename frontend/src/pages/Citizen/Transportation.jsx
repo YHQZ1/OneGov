@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Search, MapPin, Navigation } from "lucide-react";
 import Navbar from "../../components/Navbar";
 
@@ -13,6 +13,43 @@ export default function Transportation() {
   const [routes, setRoutes] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const mapRef = useRef(null);
+
+  // Load Google Maps script dynamically
+  useEffect(() => {
+    const existingScript = document.getElementById("google-maps");
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.id = "google-maps";
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${
+        import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+      }&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      script.onload = initMap;
+      document.body.appendChild(script);
+    } else {
+      initMap();
+    }
+  }, []);
+
+  // Initialize the map
+  const initMap = () => {
+    if (mapRef.current && window.google) {
+      const map = new window.google.maps.Map(mapRef.current, {
+        center: { lat: 28.6139, lng: 77.209 }, // Default: New Delhi
+        zoom: 13,
+      });
+
+      // Example marker
+      new window.google.maps.Marker({
+        position: { lat: 28.6139, lng: 77.209 },
+        map,
+        title: "Default Center",
+      });
+    }
+  };
+
   // Simulate nearby stops (replace with backend API later)
   useEffect(() => {
     setNearbyStops([
@@ -26,11 +63,7 @@ export default function Transportation() {
     setLoading(true);
     console.log("Fetching routes for:", origin, "→", destination);
 
-    // TODO: replace with backend call, e.g.
-    // const res = await fetch(`/api/transport/directions?origin=${origin}&destination=${destination}`);
-    // const data = await res.json();
-    // setRoutes(data.routes);
-
+    // TODO: replace with backend call to Directions API
     setTimeout(() => {
       setRoutes([
         { id: 1, summary: "Bus 21 → Metro Blue", time: "35 mins", transfers: 1 },
@@ -135,10 +168,10 @@ export default function Transportation() {
       {/* Map container */}
       <div className="container mx-auto px-4 pb-12">
         <h2 className="text-xl font-bold mb-4 text-gray-900">Map</h2>
-        <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
-          {/* Google Maps will be injected here later */}
-          Map Placeholder
-        </div>
+        <div
+          ref={mapRef}
+          className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500"
+        />
       </div>
     </div>
   );

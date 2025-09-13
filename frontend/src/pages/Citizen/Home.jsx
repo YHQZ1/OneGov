@@ -374,6 +374,31 @@ export default function Home() {
         </svg>
       ),
     },
+    {
+      id: 7,
+      label: "Grievances",
+      bgColor: "bg-purple-50 hover:bg-purple-100",
+      iconColor: "text-purple-700",
+      borderColor: "border-purple-200",
+      hoverBorderColor: "hover:border-purple-400",
+      count: 9,
+      value: "grievances",
+      icon: (
+        <svg
+          className="h-8 w-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M8 10h8m-8 4h5m-9 5l2-2h10l2 2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14z"
+          />
+        </svg>
+      ),
+    },
   ];
 
   const handleSearch = () => {
@@ -435,6 +460,9 @@ export default function Home() {
         break;
       case "civic":
         navigate("/civic-engagement");
+        break;
+      case "grievances":
+        navigate("/grievances");
       default:
         break;
     }
@@ -560,7 +588,7 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
               Government Service Categories
             </h2>
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6">
               {serviceCategories.map((category) => (
                 <div
                   key={category.id}
@@ -1061,70 +1089,6 @@ export default function Home() {
           </section>
         </div>
       </div>
-
-      {/* Quick Actions Bar */}
-      <section className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 py-12 mt-8">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-white mb-2">
-              Need Immediate Assistance?
-            </h2>
-            <p className="text-blue-100">
-              Access emergency services and critical information
-            </p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-6">
-            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-semibold transition-colors shadow-lg flex items-center space-x-3 transform hover:scale-105 transition-transform">
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
-              <span>Emergency: 911</span>
-            </button>
-            <button className="bg-white hover:bg-gray-100 text-blue-600 px-8 py-4 rounded-xl font-semibold transition-colors shadow-lg flex items-center space-x-3 transform hover:scale-105 transition-transform">
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 01118 0z"
-                />
-              </svg>
-              <span>Help Center</span>
-            </button>
-            <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold transition-colors shadow-lg flex items-center space-x-3 transform hover:scale-105 transition-transform">
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h8z"
-                />
-              </svg>
-              <span>Live Chat Support</span>
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
